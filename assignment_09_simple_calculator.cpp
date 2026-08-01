@@ -73,3 +73,128 @@
 #include <cmath>
 using namespace std;
 
+
+void addition(int a, int b) {
+    int result = a + b;
+    cout << "Result: " << a << " + " << b << " = " << result << endl << endl;
+}
+
+
+void subtraction (int a, int b) {
+    int result =  a - b;
+    cout << "Result: " << a << " - " << b << " = " << result << endl << endl;
+}
+
+
+void multiplication(int a, int b) {
+    int result = a * b;
+    cout << "Result: " << a << " x " << b << " = " << result << endl << endl;
+}
+
+
+void division(int a, int b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero.\n" << endl;
+    }
+    else {
+        double result = static_cast<double>(a) / b;
+        cout << "Result: " << a << " / " << b << " = " << fixed << setprecision(2) << result << endl << endl;
+    }
+}
+
+
+void mod(int a, int b) {
+    if (b == 0) {
+        cout << "Error: Cannot perform modulus by zero.\n" << endl;
+    }
+    else {
+        int result = a % b;
+        cout << "Result: " << a << " % " << b << " = " << result << endl << endl;
+    }
+}
+
+
+void expo(int a, int b) {
+    int result = static_cast<int>(round(pow(a, b)));
+    cout << "Result: " << a << " ^ " << b << " = " << result << endl << endl;
+}
+
+
+int main() {
+    while (true) {
+        cout << "============================" << endl;
+        cout << "     SIMPLE CALCULATOR      " << endl;
+        cout << "============================" << endl;
+
+        cout << "1. Addition" << endl;
+        cout << "2. Subtraction" << endl;
+        cout << "3. Multiplication" << endl;
+        cout << "4. Division" << endl;
+        cout << "5. Modulus" << endl;
+        cout << "6. Exponentiation" << endl;
+        cout << "7. Quit" << endl;
+
+        int userChoice;
+        cout << "\nSelect an operation (1-7): ";
+        cin >> userChoice;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Invalid input!" << endl;
+            continue;
+        }
+
+        if (userChoice < 0 || userChoice > 7) {
+            cout << "Invalid menu option!\n" << endl;
+        }
+        else {
+            if (userChoice == 7) {
+                cout << "Goodbye!" << endl;
+                return 0;
+            }
+            else {
+                int num1;
+                cout << "Enter first number: ";
+                cin >> num1;
+
+                if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cout << "Invalid input!" << endl;
+                    continue;
+                }
+
+                int num2;
+                cout << "Enter second number: ";
+                cin >> num2;
+
+                if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cout << "Invalid input!" << endl;
+                    continue;
+                }
+
+                if (userChoice == 1) {
+                    addition(num1, num2);
+                }
+                else if (userChoice == 2) {
+                    subtraction(num1, num2);
+                }
+                else if (userChoice == 3) {
+                    multiplication(num1, num2);
+                }
+                else if (userChoice == 4) {
+                    division(num1, num2);
+                }
+                else if (userChoice == 5) {
+                    mod(num1, num2);
+                }
+                else if (userChoice == 6) {
+                    expo(num1, num2);
+                }
+            }
+        }
+    }
+}

@@ -51,3 +51,83 @@
 #include <iostream>
 using namespace std;
 
+
+string fibSequence(int terms) {
+    string display;
+
+    if (terms >= 1) {
+        display += "0 ";
+    }
+    if (terms >= 2) {
+        display += "1 ";
+    }
+
+    int previous = 0;
+    int current = 1;
+
+    for (int i = 2; i < terms; i++) {
+        int nextTerm = previous + current;
+        display += to_string(nextTerm) + " ";
+        previous = current;
+        current = nextTerm;
+    }
+
+    return display;
+}
+
+
+bool numInFib(int num) {
+    int previous = 0;
+    int current = 1;
+
+    if (num == 0 || num == 1) {
+        return true;
+    }
+
+    while (current < num) {
+        int next = previous + current;
+        previous = current;
+        current = next;
+    }
+
+    return current == num;
+}
+
+
+int main() {
+    cout << "Part A - Print First N terms";
+
+    int termsCount;
+    cout << "\nHow many terms? ";
+    cin >> termsCount;
+
+    if (termsCount <= 0) {
+        cout << "Enter a positive integer!";
+    }
+    else {
+        string sequenceResult = fibSequence(termsCount);
+        cout << "Fibonacci sequence: " << sequenceResult << endl;
+    }
+
+    cout << "\nPart B - Check if a Number Belongs to the Sequence";
+
+    int numCheck;
+    cout << "\nEnter a number to check: ";
+    cin >> numCheck;
+
+    if (numCheck <= 0) {
+        cout << "Enter a positive integer!";
+    }
+    else {
+        bool checkResult = numInFib(numCheck);
+
+        if (checkResult == true) {
+            cout << numCheck << " is a Fibonacci number.";
+        }
+        else {
+            cout << numCheck << " is NOT a Fibonacci number.";
+        }
+    }
+
+    return 0;
+}
